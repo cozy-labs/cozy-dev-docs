@@ -40,7 +40,7 @@ Here we are, doing the traditional "Hello World" app that can make you want to s
 {
   "name": "your-app-name",
   "cozy-type": "static",
-  "displayName": "Your App's Name",
+  "cozy-displayName": "Your App's Name",
   "version": "1.0.0",
   "description": "Your app's description",
   "icon-path": "main_icon.png"
