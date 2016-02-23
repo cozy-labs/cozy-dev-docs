@@ -654,7 +654,7 @@ Cozy extends Node.js manifest so we don't have to deal with yet another file:
 ```json
 {
   "name": "my-app-identifier",
-  "displayName": "My Application Name",
+  "cozy-displayName": "My Application Name",
   "description": "My application's punchline",
   "version": "1.0.0",
   "cozy-permissions": {
