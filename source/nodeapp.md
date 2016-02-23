@@ -116,7 +116,7 @@ Located in `./server/models`, models are used to interact with the database. The
 
 
 ### Other elements
-The `client/` folder will be untouched in this tutorial, which focused more on the Cozy specificties that are located on the server. It is important to note that we can use any technology we like, Angular, React, Ember, Backbone, jQuery, even your own framework. For the needs of this tutorial, the client will be a simple HTTP client to see the result of our work on the server.
+The `client/` folder will be untouched in this tutorial, which focused more on the Cozy specificities that are located on the server. It is important to note that we can use any technology we like: Angular, React, Ember, Backbone, jQuery, even your own framework. For the needs of this tutorial, the client will be a simple HTTP client to see the result of our work on the server.
 
 The `node_modules/` folder contains the dependencies installed earlier, you will never touch it either.
 
@@ -151,7 +151,7 @@ If you are willing to check the full Data System's documentation, please <a href
 ### Using cozydb to build a CRUD
 In this section, we will learn how to define a new document type in our application, and build a CRUD (a set of basic operations: Create, Read, Update, Delete) for it.
 
-In order to try our results, we'll to wrap this CRUD with an HTTP API in our Hello World application. This API is already defined in `./server/controllers/debts`, but it's an empty shell that we'll fill.
+In order to try our results, we'll need to wrap this CRUD with an HTTP API in our Hello World application. This API is already defined in `./server/controllers/debts`, but it's an empty shell that we'll fill.
 
 As stated earlier, we are going to write a CRUD for debt management application.
 
@@ -252,7 +252,7 @@ router.post('/debts', function(req, res, next) {
 <br style="clear:both;" />
 The function `Debt.create` creates a new debt object with the data from the request's body. That means the client must send a body with all the mandatory fields you defined in the document type schema. `req.body` contains exactly the payload we sent from the client.
 
-It is important to note that `req.body` only exists because we use the `body-parser` middleware, declared in `./server.js`. This middleware looks into every requests the server receives, and if it find a JSON payload, unserialize it to a JavaScript object.
+It is important to note that `req.body` only exists because we use the `body-parser` middleware, declared in `./server.js`. This middleware looks into every requests the server receives, and if it finds a JSON payload, unserialize it to a JavaScript object.
 
 <aside class="notice">
 As an sharp-eyed reader, you probably noticed we don't do data validation at all here. For security reasons, and to prevent users from messing up, it is strongly advised to validate all data before pushing them to the database.
@@ -674,7 +674,7 @@ The `description` is used when we install the application. It quickly describes 
 `version` is used by Cozy to know when the application has a new version, and therefore suggest the user to updates it.
 
 `cozy-permission` is the list of document types our application will be granted access to. We must add a description to inform the user **why** our application needs to access this document type. For now, it's purely informative, but it's the first step to make transparent what our application does, and build trust with our future users.
-Authentication and authorization is managed by the Data System, and cozydb automatically adds the information need to authenticate itself.
+Authentication and authorization is managed by the Data System, and cozydb automatically adds the information needed to authenticate itself.
 
 
 ### Deploying the application
