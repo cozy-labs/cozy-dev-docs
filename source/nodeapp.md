@@ -600,7 +600,7 @@ We can now add more parameters to our requests:
 ```javascript
 // ./server/controllers/debt.js
 
-/// List of all debts, for a given creditor
+/// List of all debts, for a given creditor, between two dates
 router.get('/debts', function(req, res, next) {
     /*
         `Debt.request` also has an `options` parameter where you can specify
@@ -610,7 +610,7 @@ router.get('/debts', function(req, res, next) {
         startkey: ['Joseph', '2015-12-01'],
         endkey: ['Joseph', '2015-12-31'],
     };
-    Debt.request('byCreditor', options, function(err, debts) {
+    Debt.request('byCreditorDate', options, function(err, debts) {
         if(err) {
             /*
                 If an unexpected error occurs, forward it to Express error
