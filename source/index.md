@@ -16,9 +16,9 @@ search: true
 
 Welcome to the **Cozy Developer Space**.
 
-Here you’ll find everything you need to understand Cozy technically and to develop applications and konnectors.
+Here you will find everything you need to understand Cozy technically and to develop applications and konnectors.
 
-The **technical level required** to read and understand this documentation is not over 9,000; you’ll roughly have to:
+The **technical level required** to read and understand this documentation is not over 9,000; you will roughly have to:
 
  * Understand how the web works (both **client** and **server** side)
  * Read/Write **JavaScript**, **HTML** and **CSS**
@@ -36,7 +36,7 @@ console.log(" ╰(◕‿◕)╯ ");
 
 ![Home Screenshot](images/home-screenshot.jpg)
 
-Cozy is a **personal web deployment platform**, which enables you to quickly bootstrap applications and interact with your data. It stands on a server - between your application and the operating system - easying the pain of **system administration**, **web development** and **security**. Get your data back home!
+Cozy is a **personal web deployment platform**, which enables you to quickly bootstrap applications and interact with your data. It stands on a server - between your application and the operating system - easing the pain of **system administration**, **web development** and **security**. Get your data back home!
 
 ### Data-oriented
 
@@ -52,15 +52,15 @@ Find out more on the [Architecture section](#architecture-amp-components)
 
 ### Tools
 
-Cozy also became our **daily working environment**, and we want it to be as comfortable as possible. It means that we require it flexible, extensible and usable. We use **Node.js** and **CouchDB** as our main technologies.
+Cozy also became our **daily working environment**, and we want it to be as comfortable as possible. It means that we require it to be flexible, extensible and usable. We use **Node.js** and **CouchDB** as our main technologies.
 
 ![Node JS](images/nodejs.jpg)
 
-**Node.js** is a great and modern engine with a huge community of module creators. It has elvoved along with the GitHub's Open-Source popularization and is now wide-spread in the Web industry. Aside from being heavily maintained, it remains fun to extend and play with.
+**Node.js** is a great and modern engine with a huge community of module creators. It has evolved along with the GitHub's Open-Source popularization and is now wide-spread in the Web industry. Aside from being heavily maintained, it remains fun to extend and play with.
 
 ![CouchDB](images/couch.jpg)
 
-**CouchDB** is surely less-known, but definitely reliable. As a proper Erlang program, it has proven its strength and stability. A consistent, well-documented API, plus wonderful replication capabilities: the recipe of what we love on a database engine.
+**CouchDB** is surely less-known, but definitely reliable. As a proper Erlang program, it has proven its strength and stability. A consistent, well-documented API, plus wonderful replication capabilities: the recipe of what we love of a database engine.
 
 
 
@@ -77,7 +77,7 @@ Cozy also became our **daily working environment**, and we want it to be as comf
 <small>HAL 9000 - CoffeeScript compiler</small>
 
 
-But to be honest, we don't need those fancy words to convince you to develop on Cozy.
+But to be honest, we don't need these fancy references to convince you to develop on Cozy.
 
 
 ### To the future, Marty!
@@ -98,11 +98,11 @@ And whatever the reason, you will always find a friendly team member to help you
 
 # Getting Started
 
-This section is a quick tutorial showing off the different steps to start using Cozy as a development environment, making a simple app, and interact with your data.
+This section is a quick tutorial showing the different steps to start using Cozy as a development environment, making a simple app, and interact with your data.
 
 ## Set up the Development Environment
 
-Since Cozy is made from several pieces, we wrapped it into an **easy-to-use Virtual Machine**, so you don't clutter your local system. That also means you can use the operation system you like! Well, there are obviously issues on Windows, so we will assume here that you use a **GNU/Linux system or Mac OS X**.
+Since Cozy is made from several pieces, we wrapped it into an **easy-to-use Virtual Machine**, so you don't clutter your local system. This also means you can use the operating system you like! Well, there are obviously issues on Windows, so we will assume here that you use a **GNU/Linux system or Mac OS X**.
 
 The environment is made of two parts: the Virtual Machine itself - a fully installed Cozy platform - and a local Node.js tool called `cozy-dev` which will help you getting started and deploying your app to your Cozy.
 
@@ -127,7 +127,7 @@ The first step is obviously to install the development dependencies. Git is the 
 
 ### 2. Install Node.js
 
- > On Debian GNU/Linux Jessie, the proper version of Node.js is available in the official repositories
+ > On Debian GNU/Linux Jessie, one of the proper version of Node.js (0.10.29) is available in the official repositories
 
 ```shell
 apt-get install nodejs nodejs-legacy npm
@@ -194,7 +194,7 @@ cozy-dev vm:update
 ```
 
 Use `cozy-dev` to initialize the environment.
-It is recommended to **update it** at the end because we don't necessarily maintain the raw image in an up-to-date state, as a new version of Cozy can be released every couple of weeks ☺
+It is recommended to **update it** at the end because we do not necessarily maintain the raw image in an up-to-date state, as a new version of Cozy can be released every couple of weeks ☺
 
 <aside class="notice">
 The command <code>cozy-dev vm:init</code> can take a few minutes to complete as it downloads the full environment. You only have to do it once though.
@@ -207,9 +207,9 @@ You should now be able to go to <a href="http://localhost:9104">http://localhost
 ## Introduction to Cozy Cloud architecture
 Before writing code, let's have an overview of the Cozy Cloud architecture. The platform is made of 3 main components:
 
-* the proxy handles user authentication. Your app won't have to deal with it, nor anything user related, because Cozy has a single user.
+* the proxy handles user authentication. Your app will not have to deal with it, nor anything user related, because Cozy has a single user.
 * the data system is a wrapper for CouchDB, which handles authorization and permission of applications when they access data.
-* the pPaaS is what install, updated, uninstall, start and stop applications in the platform. You don't have to tink about deployment!
+* the pPaaS (personal Platform as a Service) is what installs, updates, uninstalls, starts and stops applications in the platform. You do not have to think about deployment!
 
 The Cozy Cloud architecture is detailed in a <a href="#architecture-and-components">specific part</a>.
 
@@ -219,11 +219,11 @@ From this point onward, you have a choice to make:
 
 ## Client-side application
 
-If you want to make a simple app that only manipulate data inside the cozy (no sharing, no accessing an external API), head over to the <a href="./clientsideapp.html">Client-side apps section</a>.
+If you want to make a simple app that only manipulates data inside the Cozy (no sharing, no accessing an external API), head over to the <a href="./clientsideapp.html">Client-side apps section</a>.
 
 ## Node.js application
 
-If you want to make a powerfull app using node.js, which manipulate files, access remote APIs or allow access a cozy visitor with complex rules, go to the <a href="./nodeapp.html">Node.js app</a>.
+If you want to make a powerful app using node.js, which manipulates files, accesses remote APIs or allows access to a cozy visitor with complex rules, go to the <a href="./nodeapp.html">Node.js app</a>.
 
 # Understanding the platform
 
@@ -281,6 +281,6 @@ You can always contact the team by sending an email at contact[at]cozycloud.cc.
 You will find all the repositories under the [cozy organization](https://github.com/cozy/) and the [cozy-labs organization](https://github.com/cozy-labs/).
 
 ## Mentorship
-We have a special menthorship program for developers looking for help!
-One Cozy's team member will spend 2 hours a week with you to help you developing your application!
+We have a special mentoring program for developers looking for help!
+A member of Cozy's team will spend 2 hours a week with you to help you developing your application!
 You can find all the details [here](https://forum.cozy.io/t/mentorship-program/529).
