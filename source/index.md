@@ -255,16 +255,28 @@ We haven't moved all the resources to the new documentation website. For the tim
 
 ## Main document types
 
-<aside class="notice">
-Coming soon...
-<ul>
-<li>Event</li>
-<li>Contact</li>
-<li>File</li>
-<li>Folder</li>
-<li>Message</li>
-</ul>
-</aside>
+All Cozy apps produce many data as JSON document that can be reused in your own application. The
+main document types available are the following ones:
+
+Doc Type | Main Fields
+-------- | -----------
+BankOperation | title, date, amount
+Bill | type, vendor, date, amount
+BloodPressure | systolic, diastolic
+Bookmark | title, url, tag
+Commit | sha, parent, tree, url, author, email, message, additions, deletions, files
+Contact  | datapoints, n, fn, org, title, bday, department
+Event    | start, end, description, place, rrule
+File     | name, path, class, lastModification, creationDate, size, mime, checksum
+Folder   | name, path, lastModification, creationDate
+Email    | headers, from, to, cc, bcc, replyTo, subject, text, html, date, attachments, inReplyTo
+Note     | title, content, creationDate, lastModificationDate
+Photo    | title, description, orientation, binary
+Sleep    | deepSleepDuration, lightSleepDuration, sleepDuration
+Steps    | distance, steps
+UseTracker | dateStart, dateEnd, duration, app
+Weight | weight, leanWeight, fatWeight
+Tasky | creationDate, completionDate, description, tags
 
 # Getting help
 ## IRC
