@@ -228,7 +228,60 @@ If you want to make a powerful app using node.js, which manipulates files, acces
 # Understanding the platform
 
 ## Architecture and Components
-We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/getting-started/architecture-overview.html).
+
+Understanding how the platform is built is essential to be able to work with it.
+
+The following figure displays the different parts of Cozy, that we are going to describe.
+
+![Cozy platform](images/cozy-platform-architecture.jpg)
+
+Cozy is made of three main components: a persistent layer, the [Data System](###The Data System), the [personal Platform as a service](###The pPaas) and the [platform interface](###The platform interface).
+
+### The Data System
+
+[Gihub repository](https://github.com/cozy/cozy-data-system/)
+
+Personal data is at the core of Cozy, therefore the Data System is the central piece of Cozy where all your data is safely stored and ready to be used.
+
+The Data System is a unified API which consists of:
+- the database itself, CouchDB, where all your personal data and Cozy data is stored as document, each document having a type depending on the data it contains (a contact, an email, a setting)
+- binaries, stored in CouchDB too, that in particular allow to authenticate and authorize requests made by Cozy so that resources (apps for example) can only access the document types they are allowed to access
+- the indexer, a REST wrapper of our own, built around Whoosh
+
+It is important to emphasize here that the Data System owns the data, and decides whether the requests made by the Cozy platform are allowed or not.
+
+You can find the complete API and details about the Data System on the [dedicated cookbook](https://docs.cozy.io/en/hack/cookbooks/data-system.html).
+
+### The pPaas
+
+[Github repository](https://github.com/cozy/cozy-controller/)
+
+The personal Platform as a service, or pPaas, is an execution environment for applications collaborating around personal data. It consists mainly of the Controller, which installs, runs, updates and removes applications within Cozy. You can call the Controller using the Home, which is itself an application installed by the Controller. There is also a command line interface, cozy-monitor, that allows you to call the Controller if you have root privileges on your server.
+
+![Making the most of the Data System using applications](images/data-system-applications.jpg)
+
+The Controller therefore manages applications. These applications will store their data in the Data System. As we have seen, the Data System, not the application, owns the data. Therefore, when installing or updating an application, the user will be prompted to grant the application access to certain document types. This paradigm enables easy and straightforward collaboration between the applications: granting access to the "Contact" document type to both the Contacts application and the Emails one will allow to send an message in Emails to someone the user will have informed the contact details in Contacts. And this is a common, nearly boring example, but it can be done with any document type and any data!
+
+Moreover, uninstalling or breaking an application will not erase your data, you will be able to recover it.
+
+### The platform interface
+
+The platform interface consists of the Home ([Gihub repository](https://github.com/cozy/cozy-home/)) and the Proxy ([Gihub repository](https://github.com/cozy/cozy-proxy/)).
+
+As we have seen above, Home is an interface to the Controller which allows the user to manage applications in Cozy.
+
+Up to now, we have seen that the Data System owns the data, that the Controller can manage applications and that applications can interact with data in the Data System. How can the user access all this data? The Proxy will enable it, and is the last part of the Cozy platform. It handles authentication and authorization in Cozy. It manages registration, login, logout and password reset. It also handles all the routing of Cozy (to send the right request to the right application).
+
+If you want to learn more about authentication and authorization in Cozy, there is a [dedicated cookbook](https://docs.cozy.io/en/hack/cookbooks/authentication-authorization-workflows.html) on the subject.
+
+
+### What you should remember
+
+As a developer, you are going to create an application that will be run by Cozy's pPaaS. That application will access the data through the Data System. Also, you won't have to bother with user authentication and authorization because it is all handled by the Proxy.
+
+Keep in mind you're developing for a **personal** environment. It might be something you are not  used to at first. It changes the relationship to data we had until now!
+
+**With these three presentations, you have a clear view on the architecture of the Cozy platform, and we will now details a bit more several subjects.**
 
 ## Authentication and permissions
 We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/getting-started/architecture-overview.html).
