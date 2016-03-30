@@ -21,11 +21,17 @@ This part supposes you have installed the cozy development environment from the 
 
 # Create a client-side application for Cozy
 
-As a developer, do you believe it’s hard to play with data from differing applications? Well I'm here to try to prove you can and even more: you'll be able to code an application without a server, and this application will be able to use data from all the apps on your Cozy.
+
+Developing an app only requires writing a frontend (javascript code for the
+browser). Cozy provides an API to access and manage the user's data. Moreover,
+it handles the authentification for you. That means you can focus on the main
+features of your app without learning a new technology. You can use your
+favorite framework to build your app (Angular, React or Backbone).
+
 
 **Let's write a new contact application for Cozy!**
 
-Now, let's get serious and straight to the point: our goal is to build a client-side app which lists all contact names from the `Contact` app. It will also allow users to create, update, and delete contact names.
+The goal of this tutorial is to build a client-side app which lists all contact names from the `Contact` app. It will also allow users to create, update, and delete contact names.
 
 To do so, we'll proceed in different steps. We'll start slowly by deploying a client-side "Hello World" app, and we'll finish with a full contact app using vanillaJS. This tutorial is for everybody, from padawan to jedi, so don't be scared of it. We'll explain everything.
 
@@ -55,8 +61,6 @@ First start by creating a folder `your app` and run a `git init` in it. The mani
 * its version
 * the permissions it needs
 
-So `package.json` is the application’s manifest. It's to keep the dependencies the application needs, but can be extended with cozy-specific information.
-
 ```json
 {
   "name": "your-app-name",
@@ -67,6 +71,7 @@ So `package.json` is the application’s manifest. It's to keep the dependencies
   "icon-path": "main_icon.png"
 }
 ```
+
 
 ##### The fields you need
 
@@ -93,12 +98,13 @@ Also, an `index.html` file needs to be at the root of your repository with your 
   <title>Your app !</title>
 </head>
 <body>
-  <p>Hello World !<p>
+  <p>Hello World!<p>
 </body>
 </html>
 ```
 
 ### Deploying the application
+
 Once we've packaged our application and did a `Hello World!` in our `index.html`, we must make it available for installation. To achieve this, we can create a [Github](https://github.com/) repository, and push our work on it.
 
 ```
@@ -151,7 +157,16 @@ We'll describe in details how map/reduce work and how we can use them, later in 
 ```
 First of all, please add [cozysdk-client.js](https://github.com/cozy/cozysdk-client/blob/master/dist/cozysdk-client.js) in your repository and link it into your html page.
 
-Then we want to start doing things. Once our app is loaded, nothing easier: we can add an [event listener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener) to the browser event `DOMContentLoaded`.
+
+```html
+<script src="./app.js" />
+```
+Let's add a link to our own script file too.
+
+Then we want to start doing things. Once our app is loaded, nothing easier: we
+can add an [event listener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)
+to the browser event `DOMContentLoaded`. It will allow us 
+
 
 ```javascript
 function updateContactList(){
@@ -395,14 +410,14 @@ cozysdk.create('Contact', contact, function(err, res) {
 
 ```
 
-The function `[create(docType, attributes, callback)](https://github.com/cozy/cozysdk-client/blob/master/api.md#createdoctype-attributes-callback)` creates a new object with the data from the `[contact](https://github.com/cozy/cozysdk-client-tuto/blob/vanillajs/app.js#L16-L18)` object.
+The function [`create(docType, attributes, callback)`](https://github.com/cozy/cozysdk-client/blob/master/api.md#createdoctype-attributes-callback) creates a new object with the data from the `[contact](https://github.com/cozy/cozysdk-client-tuto/blob/vanillajs/app.js#L16-L18)` object.
 
 
 <aside class="notice">
 As an sharp-eyed reader, you probably noticed we don't do data validation at all here. For security reasons, and to prevent users from messing up, it is strongly advised to validate all data before pushing them to the database.
 </aside>
 
-When we try again to create a new debt from the browser, we notice the result is not just the payload we sent, but the document from the database itself. Most importantly, it has an "_id" field, which is a unique identifier for the document, that we can reuse for later access, update, or deletion. 
+When we try again to create a new contact from the browser, we notice the result is not just the payload we sent, but the document from the database itself. Most importantly, it has an "_id" field, which is a unique identifier for the document, that we can reuse for later access, update, or deletion. 
 
 #### Update
 
@@ -420,7 +435,7 @@ For update, we pass the id and the changes we want to make to the [cozysdk.updat
 #### Destroy
 
 <br style="clear: both;" />
-The next handy method is `[destroy(docType, id, callback)](https://github.com/lemelon/cozysdk-client/blob/master/api.md#destroydoctype-id-callback)`, which requires an ID as parameter, that we get from `[getIDFromElement(event.target)](https://github.com/cozy/cozysdk-client-tuto/blob/vanillajs/app.js#L50)`. Straightforward, isn't it?
+The next handy method is [`destroy(docType, id, callback)`](https://github.com/lemelon/cozysdk-client/blob/master/api.md#destroydoctype-id-callback), which requires an ID as parameter, that we get from [`getIDFromElement(event.target)](https://github.com/cozy/cozysdk-client-tuto/blob/vanillajs/app.js#L50). Straightforward, isn't it?
 
 For delete, we pass the id to [cozysdk.destroy](https://github.com/cozy/cozysdk-client/blob/master/api.md#updateattributesdoctype-id-attributes-callback)
 
@@ -434,6 +449,9 @@ The challenge now will be to understand and meet the needs of a random Cozy user
 
 When your application is going to be able to change the life of all the Cozy users, you can add it on [cozy-registry](https://github.com/cozy/cozy-registry) by making a pull request.
 
+To conclude we would like to give you a link to a full music player
+application: [](https://github.com/flyingrub/cozy-music). That way you can find
+inspiration by looking at this app.
 
 # Option 2 - Angular
 
