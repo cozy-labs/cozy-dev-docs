@@ -246,7 +246,7 @@ Personal data is at the core of Cozy, therefore the Data System is the central p
 The Data System is a unified API which consists of:
 - the database itself, CouchDB, where all your personal data and Cozy data is stored as document, each document having a type depending on the data it contains (a contact, an email, a setting)
 - binaries, stored in CouchDB too, that in particular allow to authenticate and authorize requests made by Cozy so that resources (apps for example) can only access the document types they are allowed to access
-- the indexer, a REST wrapper of our own, built around Whoosh
+- the indexer
 
 It is important to emphasize here that the Data System owns the data, and decides whether the requests made by the Cozy platform are allowed or not.
 
@@ -258,7 +258,7 @@ You can find the complete API and details about the Data System on the [dedicate
 
 The personal Platform as a service, or pPaas, is an execution environment for applications collaborating around personal data. It consists mainly of the Controller, which installs, runs, updates and removes applications within Cozy. You can call the Controller using the Home, which is itself an application installed by the Controller. There is also a command line interface, cozy-monitor, that allows you to call the Controller if you have root privileges on your server.
 
-![Making the most of the Data System using applications](images/data-system-applications.jpg)
+![Making the most of the Data System using applications](images/data-system-apps.jpg)
 
 The Controller therefore manages applications. These applications will store their data in the Data System. As we have seen, the Data System, not the application, owns the data. Therefore, when installing or updating an application, the user will be prompted to grant the application access to certain document types. This paradigm enables easy and straightforward collaboration between the applications: granting access to the "Contact" document type to both the Contacts application and the Emails one will allow to send an message in Emails to someone the user will have informed the contact details in Contacts. And this is a common, nearly boring example, but it can be done with any document type and any data!
 
