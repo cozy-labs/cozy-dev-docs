@@ -16,9 +16,9 @@ search: true
 
 Welcome to the **Cozy Developer Space**.
 
-Here you’ll find everything you need to understand Cozy technically and to develop applications and konnectors.
+Here you will find everything you need to understand Cozy technically and to develop applications and konnectors.
 
-The **technical level required** to read and understand this documentation is not over 9,000; you’ll roughly have to:
+The **technical level required** to read and understand this documentation is not over 9,000; you will roughly have to:
 
  * Understand how the web works (both **client** and **server** side)
  * Read/Write **JavaScript**, **HTML** and **CSS**
@@ -36,7 +36,7 @@ console.log(" ╰(◕‿◕)╯ ");
 
 ![Home Screenshot](images/home-screenshot.jpg)
 
-Cozy is a **personal web deployment platform**, which enables you to quickly bootstrap applications and interact with your data. It stands on a server - between your application and the operating system - easying the pain of **system administration**, **web development** and **security**. Get your data back home!
+Cozy is a **personal web deployment platform**, which enables you to quickly bootstrap applications and interact with your data. It stands on a server - between your application and the operating system - easing the pain of **system administration**, **web development** and **security**. Get your data back home!
 
 ### Data-oriented
 
@@ -52,15 +52,15 @@ Find out more on the [Architecture section](#architecture-amp-components)
 
 ### Tools
 
-Cozy also became our **daily working environment**, and we want it to be as comfortable as possible. It means that we require it flexible, extensible and usable. We use **Node.js** and **CouchDB** as our main technologies.
+Cozy also became our **daily working environment**, and we want it to be as comfortable as possible. It means that we require it to be flexible, extensible and usable. We use **Node.js** and **CouchDB** as our main technologies.
 
 ![Node JS](images/nodejs.jpg)
 
-**Node.js** is a great and modern engine with a huge community of module creators. It has elvoved along with the GitHub's Open-Source popularization and is now wide-spread in the Web industry. Aside from being heavily maintained, it remains fun to extend and play with.
+**Node.js** is a great and modern engine with a huge community of module creators. It has evolved along with the GitHub's Open-Source popularization and is now wide-spread in the Web industry. Aside from being heavily maintained, it remains fun to extend and play with.
 
 ![CouchDB](images/couch.jpg)
 
-**CouchDB** is surely less-known, but definitely reliable. As a proper Erlang program, it has proven its strength and stability. A consistent, well-documented API, plus wonderful replication capabilities: the recipe of what we love on a database engine.
+**CouchDB** is surely less-known, but definitely reliable. As a proper Erlang program, it has proven its strength and stability. A consistent, well-documented API, plus wonderful replication capabilities: the recipe of what we love of a database engine.
 
 
 
@@ -77,7 +77,7 @@ Cozy also became our **daily working environment**, and we want it to be as comf
 <small>HAL 9000 - CoffeeScript compiler</small>
 
 
-But to be honest, we don't need those fancy words to convince you to develop on Cozy.
+But to be honest, we don't need these fancy references to convince you to develop on Cozy.
 
 
 ### To the future, Marty!
@@ -98,11 +98,11 @@ And whatever the reason, you will always find a friendly team member to help you
 
 # Getting Started
 
-This section is a quick tutorial showing off the different steps to start using Cozy as a development environment, making a simple app, and interact with your data.
+This section is a quick tutorial showing the different steps to start using Cozy as a development environment, making a simple app, and interact with your data.
 
 ## Set up the Development Environment
 
-Since Cozy is made from several pieces, we wrapped it into an **easy-to-use Virtual Machine**, so you don't clutter your local system. That also means you can use the operation system you like! Well, there are obviously issues on Windows, so we will assume here that you use a **GNU/Linux system or Mac OS X**.
+Since Cozy is made from several pieces, we wrapped it into an **easy-to-use Virtual Machine**, so you don't clutter your local system. This also means you can use the operating system you like! Well, there are obviously issues on Windows, so we will assume here that you use a **GNU/Linux system or Mac OS X**.
 
 The environment is made of two parts: the Virtual Machine itself - a fully installed Cozy platform - and a local Node.js tool called `cozy-dev` which will help you getting started and deploying your app to your Cozy.
 
@@ -127,7 +127,7 @@ The first step is obviously to install the development dependencies. Git is the 
 
 ### 2. Install Node.js
 
- > On Debian GNU/Linux Jessie, the proper version of Node.js is available in the official repositories
+ > On Debian GNU/Linux Jessie, one of the proper version of Node.js (0.10.29) is available in the official repositories
 
 ```shell
 apt-get install nodejs nodejs-legacy npm
@@ -194,7 +194,7 @@ cozy-dev vm:update
 ```
 
 Use `cozy-dev` to initialize the environment.
-It is recommended to **update it** at the end because we don't necessarily maintain the raw image in an up-to-date state, as a new version of Cozy can be released every couple of weeks ☺
+It is recommended to **update it** at the end because we do not necessarily maintain the raw image in an up-to-date state, as a new version of Cozy can be released every couple of weeks ☺
 
 <aside class="notice">
 The command <code>cozy-dev vm:init</code> can take a few minutes to complete as it downloads the full environment. You only have to do it once though.
@@ -207,9 +207,9 @@ You should now be able to go to <a href="http://localhost:9104">http://localhost
 ## Introduction to Cozy Cloud architecture
 Before writing code, let's have an overview of the Cozy Cloud architecture. The platform is made of 3 main components:
 
-* the proxy handles user authentication. Your app won't have to deal with it, nor anything user related, because Cozy has a single user.
+* the proxy handles user authentication. Your app will not have to deal with it, nor anything user related, because Cozy has a single user.
 * the data system is a wrapper for CouchDB, which handles authorization and permission of applications when they access data.
-* the pPaaS is what install, updated, uninstall, start and stop applications in the platform. You don't have to tink about deployment!
+* the pPaaS (personal Platform as a Service) is what installs, updates, uninstalls, starts and stops applications in the platform. You do not have to think about deployment!
 
 The Cozy Cloud architecture is detailed in a <a href="#architecture-and-components">specific part</a>.
 
@@ -219,16 +219,69 @@ From this point onward, you have a choice to make:
 
 ## Client-side application
 
-If you want to make a simple app that only manipulate data inside the cozy (no sharing, no accessing an external API), head over to the <a href="./clientsideapp.html">Client-side apps section</a>.
+If you want to make a simple app that only manipulates data inside the Cozy (no sharing, no accessing an external API), head over to the <a href="./clientsideapp.html">Client-side apps section</a>.
 
 ## Node.js application
 
-If you want to make a powerfull app using node.js, which manipulate files, access remote APIs or allow access a cozy visitor with complex rules, go to the <a href="./nodeapp.html">Node.js app</a>.
+If you want to make a powerful app using node.js, which manipulates files, accesses remote APIs or allows access to a cozy visitor with complex rules, go to the <a href="./nodeapp.html">Node.js app</a>.
 
 # Understanding the platform
 
 ## Architecture and Components
-We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/getting-started/architecture-overview.html).
+
+Understanding how the platform is built is essential to be able to work with it.
+
+The following figure displays the different parts of Cozy, that we are going to describe.
+
+![Cozy platform](images/cozy-platform-architecture.jpg)
+
+Cozy is made of three main components: a persistent layer, the [Data System](###The Data System), the [personal Platform as a service](###The pPaas) and the [platform interface](###The platform interface).
+
+### The Data System
+
+[Gihub repository](https://github.com/cozy/cozy-data-system/)
+
+Personal data is at the core of Cozy, therefore the Data System is the central piece of Cozy where all your data is safely stored and ready to be used.
+
+The Data System is a unified API which consists of:
+- the database itself, CouchDB, where all your personal data and Cozy data is stored as document, each document having a type depending on the data it contains (a contact, an email, a setting)
+- binaries, stored in CouchDB too, that in particular allow to authenticate and authorize requests made by Cozy so that resources (apps for example) can only access the document types they are allowed to access
+- the indexer
+
+It is important to emphasize here that the Data System owns the data, and decides whether the requests made by the Cozy platform are allowed or not.
+
+You can find the complete API and details about the Data System on the [dedicated cookbook](https://docs.cozy.io/en/hack/cookbooks/data-system.html).
+
+### The pPaas
+
+[Github repository](https://github.com/cozy/cozy-controller/)
+
+The personal Platform as a service, or pPaas, is an execution environment for applications collaborating around personal data. It consists mainly of the Controller, which installs, runs, updates and removes applications within Cozy. You can call the Controller using the Home, which is itself an application installed by the Controller. There is also a command line interface, cozy-monitor, that allows you to call the Controller if you have root privileges on your server.
+
+![Making the most of the Data System using applications](images/data-system-apps.jpg)
+
+The Controller therefore manages applications. These applications will store their data in the Data System. As we have seen, the Data System, not the application, owns the data. Therefore, when installing or updating an application, the user will be prompted to grant the application access to certain document types. This paradigm enables easy and straightforward collaboration between the applications: granting access to the "Contact" document type to both the Contacts application and the Emails one will allow to send an message in Emails to someone the user will have informed the contact details in Contacts. And this is a common, nearly boring example, but it can be done with any document type and any data!
+
+Moreover, uninstalling or breaking an application will not erase your data, you will be able to recover it.
+
+### The platform interface
+
+The platform interface consists of the Home ([Gihub repository](https://github.com/cozy/cozy-home/)) and the Proxy ([Gihub repository](https://github.com/cozy/cozy-proxy/)).
+
+As we have seen above, Home is an interface to the Controller which allows the user to manage applications in Cozy.
+
+Up to now, we have seen that the Data System owns the data, that the Controller can manage applications and that applications can interact with data in the Data System. How can the user access all this data? The Proxy will enable it, and is the last part of the Cozy platform. It handles authentication and authorization in Cozy. It manages registration, login, logout and password reset. It also handles all the routing of Cozy (to send the right request to the right application).
+
+If you want to learn more about authentication and authorization in Cozy, there is a [dedicated cookbook](https://docs.cozy.io/en/hack/cookbooks/authentication-authorization-workflows.html) on the subject.
+
+
+### What you should remember
+
+As a developer, you are going to create an application that will be run by Cozy's pPaaS. That application will access the data through the Data System. Also, you won't have to bother with user authentication and authorization because it is all handled by the Proxy.
+
+Keep in mind you're developing for a **personal** environment. It might be something you are not  used to at first. It changes the relationship to data we had until now!
+
+**With these three presentations, you have a clear view on the architecture of the Cozy platform, and we will now details a bit more several subjects.**
 
 ## Authentication and permissions
 We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/getting-started/architecture-overview.html).
@@ -293,6 +346,6 @@ You can always contact the team by sending an email at contact[at]cozycloud.cc.
 You will find all the repositories under the [cozy organization](https://github.com/cozy/) and the [cozy-labs organization](https://github.com/cozy-labs/).
 
 ## Mentorship
-We have a special menthorship program for developers looking for help!
-One Cozy's team member will spend 2 hours a week with you to help you developing your application!
+We have a special mentoring program for developers looking for help!
+A member of Cozy's team will spend 2 hours a week with you to help you developing your application!
 You can find all the details [here](https://forum.cozy.io/t/mentorship-program/529).
