@@ -153,9 +153,9 @@ You can find detailed instructions of installation on the [official page](https:
 
 ### 3. Install VirtualBox and Vagrant
 
-**VirtualBox** is used to emulate a full Operating System in a Virtual Machine. You can download it from [The Virtualbox website](https://www.virtualbox.org/wiki/Downloads). Make you have the latest version installed!
+**VirtualBox** is used to emulate a full Operating System in a Virtual Machine. You can download it from [The Virtualbox website](https://www.virtualbox.org/wiki/Downloads). Make sure you have the latest version installed!
 
-**Vagrant** is a Command-Line Interface to interact with VirtualBox and handle development environment easily. You can download it from [The Vagrant website](https://www.vagrantup.com/downloads.html). Make you have the latest version installed!
+**Vagrant** is a Command-Line Interface to interact with VirtualBox and handle development environment easily. You can download it from [The Vagrant website](https://www.vagrantup.com/downloads.html). Make sure you have the latest version installed!
 
 <aside class="notice">
 On Debian GNU/Linux 8, <code>virtualbox</code> and <code>vagrant</code> are available in the official repositories.
