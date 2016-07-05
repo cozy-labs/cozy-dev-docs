@@ -137,7 +137,7 @@ The Data System is the data layer of Cozy Cloud. Technically, it is a wrapper fo
 * the database is one huge list of typeless JSON documents
 
 The Data System introduces the concept of document type. Each document has a **document type**. Each application can **declare or reuse** document types. It can be Contact, an Event, a File, a Message, a Todo, etc.
-It's a coherent data assembly that we define the schema (or use the one defined by others). There are many existing document types, we've documented the main ones [here](#main-document-types).
+It's a coherent data assembly that we define the schema (or use the one defined by others). There are many existing document types, we've documented the main ones [here](../#main-document-types).
 The document type is automatically stored in the CouchDB document by the Data System. From our developper point of view, it's as if we were using SQL tables.
 
 The Data System offers a REST API, which means one must use HTTP requests to communicate with it. In order to facilitate this communication, we've built a module to provide developers a programatic API: please, meet `cozydb`.
@@ -145,7 +145,7 @@ The Data System offers a REST API, which means one must use HTTP requests to com
 <aside class="notice">
 The Data system can do much more, we'll introduce you its features step by step.
 <br />
-If you are willing to check the full Data System's documentation, please <a href="#data-system-api">click here</a>.
+If you are willing to check the full Data System's documentation, please <a href="../#data-system-api">click here</a>.
 </aside>
 
 ### Using cozydb to build a CRUD
