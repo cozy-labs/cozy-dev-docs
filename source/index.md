@@ -289,6 +289,13 @@ We haven't moved all the resources to the new documentation website. For the tim
 ## Encryption management
 We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/getting-started/architecture-overview.html).
 
+# Konnectors
+Konnectors is an application that allows small module of code to retrieve data from the outside world like invoices, activity tracker, or whatever you want. It is actively developed and maintained by the community, and generally a good way to start coding for Cozy: you write a piece of application, not a complete application.
+
+You can find the documentation to write a connector on the [repository's wiki](https://github.com/cozy-labs/konnectors/wiki).
+
+# Sharing data between Cozy
+We've been working on a protocol to share data between Cozy. It's still a work in progress, but the relevant documentation can be found [here](https://github.com/Ljinod/cozy-docs/blob/master/src/documents/en/hack/cookbooks/sharing.html.md).
 
 # References
 
@@ -300,11 +307,23 @@ We haven't moved all the resources to the new documentation website. For the tim
 ## Cozy DB API
 We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](http://cozy.github.io/cozy-db/doc/DOCINDEX.md.html).
 
-## Controller API
-We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/cookbooks/controller.html).
+## Cozy Browser SDK
+It's the same as cozy-db, except for the browser so you can directly interact with the data-system from there. You will find the documentation [here](https://cozy.github.io/cozy-browser-sdk/).
+
+## Devices API
+If you want to build an application that is not run by Cozy, like a mobile or a desktop application, you can use the Devices API to manage authentication. You will find the documentation [here](https://docs.cozy.io/en/hack/cookbooks/connect-a-device.html).
 
 ## Cozy Development Environment
 We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/cookbooks/understanding-dev-environment.html).
+
+## Cozy Desktop
+If you'd like to get technical documentation on cozy-desktop, you can find it [here](https://github.com/cozy-labs/cozy-desktop/tree/master/doc).
+
+## Controller API
+We haven't moved all the resources to the new documentation website. For the time being, we advise you to check the [old documentation website](https://docs.cozy.io/en/hack/cookbooks/controller.html).
+
+You can also check the [configuration documentation](https://github.com/cozy/cozy-controller/tree/master/doc) if you'd like to understand how to play with it.
+
 
 ## Main document types
 
