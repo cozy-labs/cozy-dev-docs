@@ -46,7 +46,7 @@ The initial idea was to create a space where developers can **experiment and pla
 
 More than a simple Platform-as-a-Service, Cozy puts the cloud back where it belongs: at home.
 
-Find out more on the [Architecture section](#architecture-amp-components)
+Find out more on the [Architecture section](#architecture-and-components)
 
 
 
