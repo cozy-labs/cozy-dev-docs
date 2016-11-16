@@ -122,10 +122,10 @@ cozy-dev proxify http://localhost:9104
 ```
 
 
-This command uses up to two params that can let you customize the proxy:
+This command uses up to two params:
 
-1. a URL: we here use the local VM (instanciated with `cozy-dev vm:start`), but you can safely use any cozy available remotely. _No more need to use a local VM for development_, you can safely use your own Cozy (like `tbl.cozycloud.cc`)
-2. a subdir: if your app is complex, you probably won't distribute the source directly, but use a builder (like _Webpack_) to that produces output assets in a dedicated subdir (like `build`). You can pass its path as a second argument to indicate the directory to use as root for the proxy
+1. a `URL` (mandatory): we here use the local VM (instanciated with `cozy-dev vm:start`), but you can safely use any cozy available remotely. _No more need to use a local VM for development_, you can safely use your own Cozy (like `tbl.cozycloud.cc`)
+2. a `subdir` (optional): if your app is complex, you probably won't distribute the source directly, but use a builder (like _Webpack_) to that produces output assets in a dedicated subdir (like `build`). You can pass its path as a second argument to indicate the directory to use as root for the proxy
 
 
 ```
