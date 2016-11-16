@@ -105,7 +105,69 @@ Also, an `index.html` file needs to be at the root of your repository with your 
 
 ### Deploying the application
 
-Once we've packaged our application and did a `Hello World!` in our `index.html`, we must make it available for installation. To achieve this, we can create a [Github](https://github.com/) repository, and push our work on it.
+Once we've packaged our application and did a `Hello World!` in our `index.html`, we must make it available for installation.
+
+Thanks to our awesome team members, you've got not only one nor two, but three solutions to deploy your application in your local environment. Let's see what you can use!
+
+#### 1. Serve local files throught a proxy inside the VM
+
+This solution is dedicated to client-side only apps, and is the prefered way to test your app.
+
+In your terminal, simply go to your app directory, and run the `cozy-dev proxify` command.
+
+
+```
+cd myapp
+cozy-dev proxify http://localhost:9104
+```
+
+
+This command uses up to two params:
+
+1. a `URL` (mandatory): we here use the local VM (instanciated with `cozy-dev vm:start`), but you can safely use any cozy available remotely. _No more need to use a local VM for development_, you can safely use your own Cozy (like `tbl.cozycloud.cc`)
+2. a `subdir` (optional): if your app is complex, you probably won't distribute the source directly, but use a builder (like _Webpack_) to that produces output assets in a dedicated subdir (like `build`). You can pass its path as a second argument to indicate the directory to use as root for the proxy
+
+
+```
+cd myapp
+npm run build
+cozy-dev proxify https://mycozy.cozycloud.cc ./build
+```
+
+
+#### 2. Serve local files by deploying it in the VM
+
+This second solution works for client-side apps as well as legacy server-compliant apps. It needs a local VM (from `cozy-dev vm:start`) that runs in the background.
+
+_Be careful that to deploy a client-side app in your local VM, your local app directory **must** be in a nested path from the folder that contains your Vagrantfile, i.e. the directory from where you run `cozy-dev vm:start`_.
+
+
+```
+- cozy
+  `- apps
+    |- Vagrantfile
+    |- .vagrant
+    `- myapp
+      |- src
+      |- build
+      `- package.json
+```
+
+
+Simply go in you app directory and run the `cozy-dev deploy` command. It takes as argument the path from where to distribute your assets. It can be the current directory or a subdir like `build`.
+
+
+```
+cd myapp
+cozy-dev deploy ./build
+```
+
+
+#### 3. Distribute it _via_ Github
+
+This last solution allow you to install you app in any Cozy, but any changes need you to push you new version to Github before updating it in your Cozy. It can quickly become a painful back and forth, be careful if you choose it.
+
+ To achieve this, we can create a [Github](https://github.com/) repository, and push our work on it.
 
 ```
 # We here consider we have a Github repository created
@@ -165,7 +227,7 @@ Let's add a link to our own script file too.
 
 Then we want to start doing things. Once our app is loaded, nothing easier: we
 can add an [event listener](https://developer.mozilla.org/fr/docs/Web/API/EventTarget/addEventListener)
-to the browser event `DOMContentLoaded`. It will allow us 
+to the browser event `DOMContentLoaded`. It will allow us
 
 
 ```javascript
@@ -238,7 +300,7 @@ You also need to make sure that you added permissions in package.json like so:
 ```   
 `description` is going to be showned when a user installs your application. So I advise you to be persuasive and explain why it needs to access your Contact data.
 
-This is just an example but if you want to work with Emails for example, you'll just need to add Message as a cozy-permission and name it as a docType in the define function. 
+This is just an example but if you want to work with Emails for example, you'll just need to add Message as a cozy-permission and name it as a docType in the define function.
 
 ### Map/Reduce
 
@@ -417,7 +479,7 @@ The function [`create(docType, attributes, callback)`](https://github.com/cozy/c
 As an sharp-eyed reader, you probably noticed we don't do data validation at all here. For security reasons, and to prevent users from messing up, it is strongly advised to validate all data before pushing them to the database.
 </aside>
 
-When we try again to create a new contact from the browser, we notice the result is not just the payload we sent, but the document from the database itself. Most importantly, it has an "_id" field, which is a unique identifier for the document, that we can reuse for later access, update, or deletion. 
+When we try again to create a new contact from the browser, we notice the result is not just the payload we sent, but the document from the database itself. Most importantly, it has an "_id" field, which is a unique identifier for the document, that we can reuse for later access, update, or deletion.
 
 #### Update
 
