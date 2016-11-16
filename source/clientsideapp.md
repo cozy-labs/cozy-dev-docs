@@ -165,7 +165,7 @@ cozy-dev deploy ./build
 
 #### 3. Distribute it _via_ Github
 
-This last solution allow you to install you app in any Cozy, but any changes need you to push you new version to Github before updating it in your Cozy. It can quickly become a painful back andforth, be careful if you choose it.
+This last solution allow you to install you app in any Cozy, but any changes need you to push you new version to Github before updating it in your Cozy. It can quickly become a painful back and forth, be careful if you choose it.
 
  To achieve this, we can create a [Github](https://github.com/) repository, and push our work on it.
 
