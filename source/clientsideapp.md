@@ -109,7 +109,7 @@ Once we've packaged our application and did a `Hello World!` in our `index.html`
 
 Thanks to our awesome team members, you've got not only one nor two, but three solutions to deploy your application in your local environment. Let's see what you can use!
 
-#### 1. Serve local files throught a proxy inside the VM
+#### 1. Serve local files through a proxy inside the VM
 
 This solution is dedicated to client-side only apps, and is the prefered way to test your app.
 
