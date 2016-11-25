@@ -77,7 +77,7 @@ First start by creating a folder `your app` and run a `git init` in it. The mani
 
 * The `name` field is an identifier for our app (without space), it will be used in the URL. In this case, we will be able to access our app from: `https://my-cozy.com/#apps/my-app-identifier/`.
 
-* In the cozy-type field, if you put "static", it will tell cozy your app does'nt need a server
+* In the cozy-type field, if you put "static", it will tell cozy your app doesn't need a server
 
 * The `displayName` field is shown when we have installed the application, in our home screen
 
@@ -297,7 +297,7 @@ You also need to make sure that you added permissions in package.json like so:
         "description": "To easily find your contact when talking about someone."
     }
 }
-```   
+```
 `description` is going to be showned when a user installs your application. So I advise you to be persuasive and explain why it needs to access your Contact data.
 
 This is just an example but if you want to work with Emails for example, you'll just need to add Message as a cozy-permission and name it as a docType in the define function.
