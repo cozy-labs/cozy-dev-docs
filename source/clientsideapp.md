@@ -68,7 +68,10 @@ First start by creating a folder `your app` and run a `git init` in it. The mani
   "cozy-displayName": "Your App's Name",
   "version": "1.0.0",
   "description": "Your app's description",
-  "icon-path": "main_icon.png"
+  "icon-path": "main_icon.png",
+  "cozy-permissions": {
+    "Contacts": "This app manages your contacts"
+  }
 }
 ```
 
@@ -86,6 +89,8 @@ First start by creating a folder `your app` and run a `git init` in it. The mani
 * The `version` field manages application's updates. It's used by Cozy to know when the application has a new version, and therefore suggest the user to update it
 
 * The `icon-path` field is the path to your app icon
+
+* The `cozy-permissions` field will be explained later.
 
 Also, an `index.html` file needs to be at the root of your repository with your 'Hello World' written in it.
 
@@ -107,67 +112,7 @@ Also, an `index.html` file needs to be at the root of your repository with your 
 
 Once we've packaged our application and did a `Hello World!` in our `index.html`, we must make it available for installation.
 
-Thanks to our awesome team members, you've got not only one nor two, but three solutions to deploy your application in your local environment. Let's see what you can use!
-
-#### 1. Serve local files through a proxy inside the VM
-
-This solution is dedicated to client-side only apps, and is the prefered way to test your app.
-
-In your terminal, simply go to your app directory, and run the `cozy-dev proxify` command.
-
-
-```
-cd myapp
-cozy-dev proxify http://localhost:9104
-```
-
-
-This command uses up to two params:
-
-1. a `URL` (mandatory): we here use the local VM (instanciated with `cozy-dev vm:start`), but you can safely use any cozy available remotely. _No more need to use a local VM for development_, you can safely use your own Cozy (like `tbl.cozycloud.cc`)
-2. a `subdir` (optional): if your app is complex, you probably won't distribute the source directly, but use a builder (like _Webpack_) to that produces output assets in a dedicated subdir (like `build`). You can pass its path as a second argument to indicate the directory to use as root for the proxy
-
-
-```
-cd myapp
-npm run build
-cozy-dev proxify https://mycozy.cozycloud.cc ./build
-```
-
-
-#### 2. Serve local files by deploying it in the VM
-
-This second solution works for client-side apps as well as legacy server-compliant apps. It needs a local VM (from `cozy-dev vm:start`) that runs in the background.
-
-_Be careful that to deploy a client-side app in your local VM, your local app directory **must** be in a nested path from the folder that contains your Vagrantfile, i.e. the directory from where you run `cozy-dev vm:start`_.
-
-
-```
-- cozy
-  `- apps
-    |- Vagrantfile
-    |- .vagrant
-    `- myapp
-      |- src
-      |- build
-      `- package.json
-```
-
-
-Simply go in you app directory and run the `cozy-dev deploy` command. It takes as argument the path from where to distribute your assets. It can be the current directory or a subdir like `build`.
-
-
-```
-cd myapp
-cozy-dev deploy ./build
-```
-
-
-#### 3. Distribute it _via_ Github
-
-This last solution allow you to install you app in any Cozy, but any changes need you to push you new version to Github before updating it in your Cozy. It can quickly become a painful back and forth, be careful if you choose it.
-
- To achieve this, we can create a [Github](https://github.com/) repository, and push our work on it.
+To achieve this, we can create a [Github](https://github.com/) repository, and push our work on it.
 
 ```
 # We here consider we have a Github repository created
@@ -188,20 +133,35 @@ If you managed to deploy it, congratulations! If not, don't worry, we're here to
 Your app could be broken if the controller didn’t manage to do one of the following operations: clone it, install it or launch it. If your application has a `package.json` that has some syntax error for example, or your file that launches the app hasn't been found, your application will not work.
 </aside>
 
+
+Pushing every change you make to github can rapidly grow tiring.
+
+Fortunately, the cozy team has provided you a tool that makes it unnecessary!
+
+In your terminal, simply go to your app directory, and run the `cozy-dev proxify` command.
+
+
+```
+cd myapp
+cozy-dev proxify http://localhost:9104
+```
+
+
+This command uses up to two params:
+
+1. a `URL` (mandatory): we here use the local VM (instanciated with `cozy-dev vm:start`), but you can safely use any cozy available remotely. _No more need to use a local VM for development_, you can safely use your own Cozy (like `tbl.cozycloud.cc`)
+2. a `subdir` (optional): if your app is complex, you probably won't distribute the source directly, but use a builder (like _Webpack_) to that produces output assets in a dedicated subdir (like `build`). You can pass its path as a second argument to indicate the directory to use as root for the proxy
+
+```
+cd myapp
+npm run build
+cozy-dev proxify https://mycozy.cozycloud.cc ./build
+```
+
 ## Source code
 
-At the end of this step, your app should be similar to [this](https://github.com/cozy/cozysdk-client-tuto/tree/step1-angular).
+At the end of this step, your app should be similar to [this](https://github.com/cozy/cozysdk-client-tuto/tree/step1).
 
-## Framework decision time
-
-From this point, you will want to add some javascript and start working with the user data. You can get started easily using only some DOM manipulation, but if you want to make a more complicated app, you are going to need a framework.
-
-If you don't have a framework preference, we recommend you get started using the [Vanilla JS](#option-1-vanilla-js) section and [Sample app](https://github.com/cozy/cozysdk-client-tuto/tree/vanillajs). The term vanilla JS is a joke about using "pure" javascript without any library. It's better to start this way and then pick the framework which best scratch your itches.
-
-If your framework of choice is Angular.js, you just got lucky as we have a [section](#option-2-angular) and [Sample app](https://github.com/cozy/cozysdk-client-tuto/tree/angular) for it. If you prefer another framework, you will find the information you need in the Vanilla section, but let us know and we might include it here!
-
-
-# Option 1 - Vanilla JS
 
 
 ## Source code
@@ -217,7 +177,7 @@ We'll describe in details how map/reduce work and how we can use them, later in 
 ```html
 <script src="./cozysdk-client.js" />
 ```
-First of all, please add [cozysdk-client.js](https://github.com/cozy/cozysdk-client/blob/master/dist/cozysdk-client.js) in your repository and link it into your html page.
+First of all, please add [cozysdk-client.js](https://github.com/cozy/cozy-browser-sdk/blob/master/dist/cozysdk-client.js) in your repository and link it into your html page.
 
 
 ```html
@@ -248,7 +208,7 @@ The Data System is the data layer of Cozy Cloud. Technically, it is a wrapper fo
 
 The Data System introduces the concept of document type. Each document has a document type. Each application can declare or reuse document types. It can be Contact, an Event, a File, a Message, a Todo, etc. It’s a coherent data assembly that we define the schema (or use the one defined by others). There are many existing document types, we’ve documented the main ones here. The document type is automatically stored in the CouchDB document by the Data System. From our developper point of view, it’s as if we were using SQL tables.
 
-The Data System offers a REST API, which means one must use HTTP requests to communicate with it. In order to facilitate this communication, we’ve built a module to provide developers a programatic API: please, meet [cozysdk-client](https://github.com/cozy/cozysdk-client).
+The Data System offers a REST API, which means one must use HTTP requests to communicate with it. In order to facilitate this communication, we’ve built a module to provide developers a programatic API: please, meet [cozy-browser-sdk](https://cozy.github.io/cozy-browser-sdk/index.html).
 
 <aside class="notice">
 The Data system can do much more, we'll introduce you its features step by step.
@@ -257,7 +217,7 @@ If you are willing to check the full Data System's documentation, please <a href
 </aside>
 
 <!-- @TODO explications about contact & requests-->
-So what we want to do here is getting all contacts and display them into an html array. To do so, we will use the [cozysdk](https://github.com/cozy/cozysdk-client/blob/master/api.md), and more acurately its functions [define request](https://github.com/cozy/cozysdk-client/blob/master/api.md#definerequestdoctype-name-request-callback) and a [run request](https://github.com/cozy/cozysdk-client/blob/master/api.md#rundoctype-name-params-callback). Nothing more.
+So what we want to do here is getting all contacts and display them into an html array. To do so, we will use the [cozy-browser-sdk](https://cozy.github.io/cozy-browser-sdk/index.html), and more acurately its functions [defineMapReduceView](http://cozy.github.io/cozy-browser-sdk/module-mapreduce.html#.defineMapReduceView) and a [queryView](http://cozy.github.io/cozy-browser-sdk/module-mapreduce.html#.queryView). Nothing more.
 
 ### The permissions
 
@@ -311,9 +271,9 @@ The principle is simple: CouchDB is a huge list of documents. To fetch a subset 
 
 ```javascript
 function updateContactList(){
-  cozysdk.defineRequest('Contact', 'all', 'function(doc) { emit(doc.n); }', function(err, res) {
+  cozysdk.defineMapReduceView('Contact', 'all', 'function(doc) { emit(doc.n); }', function(err, res) {
     if (err != null) return alert(err);
-    cozysdk.run('Contact', 'all', {}, function(err, res) {
+    cozysdk.queryView('Contact', 'all', {}, function(err, res) {
       if (err != null) return alert(err);
       var contacts = JSON.parse("" + res);
       /* contacts == [
@@ -326,9 +286,9 @@ function updateContactList(){
 }
 ```
 
-#### `defineRequest`
+#### `defineMapReduceView`
 
-In our case, `defineRequest` asks us to use the Map/Reduce method and defines a document from their original structure into a new key/value pair. You can then choose to map only a specific field of a document. Here, for example, is a function that can Map the name field of a contact document.
+In our case, `defineMapReduceView` asks us to use the Map/Reduce method and defines a document from their original structure into a new key/value pair. You can then choose to map only a specific field of a document. Here, for example, is a function that can Map the name field of a contact document.
 
 ```javascript
 function(doc) {
@@ -342,11 +302,11 @@ The call to the emit function is when the mapping takes place. The emit function
 
 Here you can easily customize your request and use it whenever you wish in your app.
 
-#### `run`
+#### `queryView`
 
-Then, from the callback response, you will be able to use the `run` function that will run a request defined by `defineRequest(docType, name, request, callback)`. So in this case, I will ask run to call the request defined with `all` by the `defineRequest` function. The response is an id, a key and a value.
+Then, from the callback response, you will be able to use the `queryView` function that will query a request defined by `defineMapReduceView(docType, name, request, callback)`. So in this case, I will ask `queryView` to call the request defined with `all` by the `defineMapReduceView` function. The response is an id, a key and a value.
 
-If you want to add params in run, you will be able to enable users to fine tune what they want to get.
+If you want to add params in `queryView`, you will be able to enable users to fine tune what they want to get.
 
 * key: only returns document for this key
 * keys: array in which each of the elements contains a key from the map function and the id of the document that produced it
@@ -367,14 +327,14 @@ So for example params could look like this:
 Imagine you have a Cozy database with contact records and you want a view of those records using the name of each user as keys. If so, you can easily do the following:
 
 ```javascript
-defineRequest("Contact", "lastName", function(doc) {
+defineMapReduceView("Contact", "lastName", function(doc) {
     if (doc.n) {
         emit(doc.n, doc);
     }
 });
 ```
 
-If you run this function [run(docType, name, params)], you will have a result like this:
+If you query this function (`queryView(docType, name, params)`), you will have a result like this:
 
 ```javascript
 [
@@ -479,7 +439,7 @@ The function [`create(docType, attributes, callback)`](https://github.com/cozy/c
 As an sharp-eyed reader, you probably noticed we don't do data validation at all here. For security reasons, and to prevent users from messing up, it is strongly advised to validate all data before pushing them to the database.
 </aside>
 
-When we try again to create a new contact from the browser, we notice the result is not just the payload we sent, but the document from the database itself. Most importantly, it has an "_id" field, which is a unique identifier for the document, that we can reuse for later access, update, or deletion.
+When we try again to create a new contact from the browser, we notice the result is not just the payload we sent, but the document from the database itself. Most importantly, it has an '\_id' field, which is a unique identifier for the document, that we can reuse for later access, update, or deletion.
 
 #### Update
 
@@ -512,107 +472,4 @@ The challenge now will be to understand and meet the needs of a random Cozy user
 When your application is going to be able to change the life of all the Cozy users, you can add it on [cozy-registry](https://github.com/cozy/cozy-registry) by making a pull request.
 
 To conclude we would like to give you a link to a full music player
-application: [](https://github.com/flyingrub/cozy-music). That way you can find
-inspiration by looking at this app.
-
-# Option 2 - Angular
-
-## First step: Add AngularJS
-
-### Our objectives for this step
-
-Making an application in javascript can get complicated fast. Before we try going further, lets pick a framework and use it to display our "Hello World!" example. For this tutorial, we've chosen angularJS.
-
-AngularJS is a Single Page Application (SPA) framework. If you don't have an idea of what I'm talking about, I invite you to follow the official AngularJS [tutorial](https://angularjs.org/): it explains exactly what AngularJS is and why it's advantageous for the user.
-
-AngularJS enables the user to easily create dynamic views. It's a very used SPA, so that's why it could be a beneficial learning tool.
-
-To get started with angular, we will need to include the angularJS library in our app and declare an entry to our application, by calling `ng-app="[the name of your app]"`. We'll also need to have a main module and setup the relation between the view (home.html) and the controller (Home.Ctrl.js). If you want some style-guides for proper angular structure and coding, we recommend the [Johnpapa's angular styleguide](https://github.com/johnpapa/angular-styleguide)
-
-### The skeleton
-
-- `controllers/`, [Here](https://docs.angularjs.org/guide/controller) you have a guide about how controllers work
-- `partials/`, All the html (view) files. Templates rendered by ng-view
-- `vendor/`, The different modules (library) needed for angularjs
-- `app.module.js`, Main module (route configuration, angular lib importations...)
-
-If you understand the skeleton and the main logic of this code, you basically understood what angularjs is all about.
-
-### Source code
-
-You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/step2-angular)!
-
-## Second step: Get data from contacts app
-
-Now down to some serious business: we're ready to play with different Cozy applications. We decided to interact with the "Contact" app but you can also do the same for any other application. Imagine what service you can propose to your future users. But for now, let's synchronize with contacts by getting all the names of the user contacts...
-
-### Install the contact app from the store and create or import a few of your contacts
-
-To understand what we are doing here, you will need to have some contacts in your Cozy database. If you haven't done so already, install the Cozy Contacts application from the store on your Cozy and enter some contacts. You can import some contacts from google or insert new contacts manually.
-
-#### Our objectives for this step
-
-For this step, we'll have to get the list of all the names of the contact app. First of all, we'll need to create permissions in the 'package.json' file to be able to access the data of the `Contact` app.
-
-You'll also need to import two files into your project:
-
-- [cozysdk-client.js](https://github.com/cozy/cozysdk-client/blob/master/dist/cozysdk-client.js): this is a javascript Cozy library that enables to do clean request to the data-system. You can access this [tutorial](https://github.com/cozy/cozysdk-client/blob/master/api.md) to learn how to use it.
-- [cozysdk.angular.js](https://github.com/cozy/cozysdk-client-tuto/blob/v4.0/interfaces/cozysdk.angular.js): this is the Cozy file that enables you to connect the logic of the cozysdk-client library with angularjs. It helps developers to work with organized code in angularjs.
-
-Both these files are optional, you could use `postMessage` to retrieve your app token and then do manual `XMLHttpRequest` calls against the [data-system api](https://docs.cozy.io/en/hack/cookbooks/data-system.html), but as the saying goes: ["do not reinvent the wheel"](https://en.wikipedia.org/wiki/Reinventing_the_wheel). So why do complicated when you can do simple?
-
-We'll also need to add, in your Home.Ctrl.js file, a call to [defineRequest](https://github.com/cozy/cozysdk-client/blob/master/api.md#definerequestdoctype-name-request) and [run](https://github.com/cozy/cozysdk-client/blob/master/api.md#rundoctype-name-params-callback) it to send requests to the data-system and get all Contacts.
-
-### But wait a minute... What is the `data-system`?
-
-The Data System is the data layer of Cozy Cloud. Technically, it is a wrapper for CouchDB that manages authorization and authentification of applications willing to access user’s data. CouchDB is an open-source NoSQL database document-oriented. If you are familiar with SQL database such as MySQL, you will find it different in various ways:
-* There is no concept of “table”
-* The database is one huge list of typeless JSON documents
-
-The Data System introduces the concept of document type. Each document has a document type. Each application can declare or reuse document types. It can be Contact, an Event, a File, a Message, a Todo, etc. It’s a coherent data assembly that we define the schema (or use the one defined by others). There are many existing document types, we’ve documented the main ones here. The document type is automatically stored in the CouchDB document by the Data System. From our developper point of view, it’s as if we were using SQL tables.
-
-The Data System offers a REST API, which means one must use HTTP requests to communicate with it. In order to facilitate this communication, we’ve built a module to provide developers a programatic API: please, meet [cozysdk-client](https://github.com/cozy/cozysdk-client).
-
-<aside class="notice">
-The Data system can do much more, we'll introduce you its features step by step.
-<br />
-If you are willing to check the full Data System's documentation, please <a href="#data-system-api">click here</a>.
-</aside>
-
-### Promises
-
-We can chain and get the results of these calls through promises. If you're not familiar with this syntax, you can read more about it in [this article](http://www.webdeveasy.com/javascript-promises-and-angularjs-q-service/). Once we have the result, we can add it to our scope and display them in `home.html` by using a `ng-repeat`.
-
-We can also put a filter to show how simple it is to do it in angularjs, just for the fun.
-
-### Source code
-
-You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/step3-angular)!
-
-### So what happened?
-
-This is exactly where the magic is: two apps that have nothing to do with each other, developed by two different people that might not even know each other, can work together and be synchronized, or, even better, rationalized. In other words, this demo proves the fact that the apps can talk to each other. So to think a bit further, the apps can share their data to be able to give transverse services. So because our applications work in the same data space, the apps start to collaborate to deliver a more integrated user experience. They are, in a certain way, smart.
-
-## Fourth step : Create, destroy or update a contact
-
-Ok, now we're going to have some real fun, since our framework is understood and well implemented.
-
-#### Our objectives for this step
-
-The only thing we'll have to do here is to add some functions in the controller. Nothing more. The other nice thing that you'll be able to notice, is that every changes is going to refresh in the contact app instantly, even without page reloading.
-
-The functions that we'll need are `send`, `update`, and `destroy`. These function respectively enables to call [`create`](https://github.com/cozy/cozysdk-client/blob/master/api.md#createdoctype-attributes-callback), [`updateAttributes`](https://github.com/cozy/cozysdk-client/blob/master/api.md#updateattributesdoctype-id-attributes) and [`destroy`](https://github.com/cozy/cozysdk-client/blob/master/api.md#destroyid-callback) from the 'cozysdk.angular.js' file.
-
-#### Source code
-
-You can find the source code for this step [here](https://github.com/cozy/cozysdk-client-tuto/tree/step4-angular)!
-
-#### What to keep in mind?
-
-So I've added four functions to the controller file : send, update, destroy, and updateContactList.
-
-### Going further
-
-I think my role is complete. You now have the technical tool to develop client-side apps with angularjs on Cozy. You can also acquire more skills on angularjs by googling it and seeing the enormous amount of tutorials on it. The challenge now will be to understand and meet the needs of a random Cozy user. What new service can you offer this user, in order to simplify the managing of his or her data? You now know how to synchronize data from the different applications, so you'll need to go further and imagine what you can do with this knowledge.
-
-When your application is going to be able to change the life of all the Cozy users, you can add it on [cozy-registry](https://github.com/cozy/cozy-registry) by making a pull request.
+application: [cozy-music](https://github.com/cozy-labs/cozy-music). That way you can find inspiration by looking at this app.
