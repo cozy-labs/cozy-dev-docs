@@ -217,7 +217,7 @@ If you are willing to check the full Data System's documentation, please <a href
 </aside>
 
 <!-- @TODO explications about contact & requests-->
-So what we want to do here is getting all contacts and display them into an html array. To do so, we will use the [cozy-browser-sdk](https://cozy.github.io/cozy-browser-sdk/index.html), and more acurately its functions [defineMapReduceView](http://cozy.github.io/cozy-browser-sdk/module-mapreduce.html#.defineMapReduceView) and a [queryView](http://cozy.github.io/cozy-browser-sdk/module-mapreduce.html#.queryView). Nothing more.
+So what we want to do here is getting all contacts and display them into an html array. To do so, we will use the [cozy-browser-sdk](https://cozy.github.io/cozy-browser-sdk/index.html), and more acurately its functions [defineView](http://cozy.github.io/cozy-browser-sdk/module-mapreduce.html#.defineView) and a [queryView](http://cozy.github.io/cozy-browser-sdk/module-mapreduce.html#.queryView). Nothing more.
 
 ### The permissions
 
@@ -271,7 +271,7 @@ The principle is simple: CouchDB is a huge list of documents. To fetch a subset 
 
 ```javascript
 function updateContactList(){
-  cozysdk.defineMapReduceView('Contact', 'all', 'function(doc) { emit(doc.n); }', function(err, res) {
+  cozysdk.defineView('Contact', 'all', 'function(doc) { emit(doc.n); }', function(err, res) {
     if (err != null) return alert(err);
     cozysdk.queryView('Contact', 'all', {}, function(err, res) {
       if (err != null) return alert(err);
@@ -286,9 +286,9 @@ function updateContactList(){
 }
 ```
 
-#### `defineMapReduceView`
+#### `defineView`
 
-In our case, `defineMapReduceView` asks us to use the Map/Reduce method and defines a document from their original structure into a new key/value pair. You can then choose to map only a specific field of a document. Here, for example, is a function that can Map the name field of a contact document.
+In our case, `defineView` asks us to use the Map/Reduce method and defines a document from their original structure into a new key/value pair. You can then choose to map only a specific field of a document. Here, for example, is a function that can Map the name field of a contact document.
 
 ```javascript
 function(doc) {
@@ -304,7 +304,7 @@ Here you can easily customize your request and use it whenever you wish in your 
 
 #### `queryView`
 
-Then, from the callback response, you will be able to use the `queryView` function that will query a request defined by `defineMapReduceView(docType, name, request, callback)`. So in this case, I will ask `queryView` to call the request defined with `all` by the `defineMapReduceView` function. The response is an id, a key and a value.
+Then, from the callback response, you will be able to use the `queryView` function that will query a request defined by `defineView(docType, name, request, callback)`. So in this case, I will ask `queryView` to call the request defined with `all` by the `defineView` function. The response is an id, a key and a value.
 
 If you want to add params in `queryView`, you will be able to enable users to fine tune what they want to get.
 
@@ -327,7 +327,7 @@ So for example params could look like this:
 Imagine you have a Cozy database with contact records and you want a view of those records using the name of each user as keys. If so, you can easily do the following:
 
 ```javascript
-defineMapReduceView("Contact", "lastName", function(doc) {
+cozysdk.defineView("Contact", "lastName", function(doc) {
     if (doc.n) {
         emit(doc.n, doc);
     }
