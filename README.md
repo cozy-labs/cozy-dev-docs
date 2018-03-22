@@ -1,3 +1,7 @@
+⚠️ ⚠️ ⚠️  This doc is no longer used. Please go to https://github.com/cozy/cozy-docs-v3 ⚠️ ⚠️ ⚠️ 
+
+
+
 Cozy Developer Documentation
 ============================
 
